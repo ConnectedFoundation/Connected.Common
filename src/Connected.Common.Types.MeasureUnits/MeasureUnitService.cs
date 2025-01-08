@@ -9,33 +9,33 @@ internal sealed class MeasureUnitService(IServiceProvider services) : Service(se
 		await Invoke(GetOperation<Delete>(), dto);
 	}
 
-	public Task<int> Insert(IInsertMeasureUnitDto dto)
+	public async Task<int> Insert(IInsertMeasureUnitDto dto)
 	{
-		throw new NotImplementedException();
+		return await Invoke(GetOperation<Insert>(), dto);
 	}
 
-	public Task<ImmutableList<IMeasureUnit>> Query(IQueryDto? dto)
+	public async Task<ImmutableList<IMeasureUnit>> Query(IQueryDto? dto)
 	{
-		throw new NotImplementedException();
+		return await Invoke(GetOperation<Query>(), dto ?? QueryDto.NoPaging);
 	}
 
-	public Task<ImmutableList<IMeasureUnit>> Query(IPrimaryKeyListDto<int> dto)
+	public async Task<ImmutableList<IMeasureUnit>> Query(IPrimaryKeyListDto<int> dto)
 	{
-		throw new NotImplementedException();
+		return await Invoke(GetOperation<Lookup>(), dto);
 	}
 
-	public Task<IMeasureUnit?> Select(IPrimaryKeyDto<int> dto)
+	public async Task<IMeasureUnit?> Select(IPrimaryKeyDto<int> dto)
 	{
-		throw new NotImplementedException();
+		return await Invoke(GetOperation<Select>(), dto);
 	}
 
-	public Task<IMeasureUnit?> Select(ISelectMeasureUnitDto dto)
+	public async Task<IMeasureUnit?> Select(ISelectMeasureUnitDto dto)
 	{
-		throw new NotImplementedException();
+		return await Invoke(GetOperation<SelectByCode>(), dto);
 	}
 
-	public Task Update(IUpdateMeasureUnitDto dto)
+	public async Task Update(IUpdateMeasureUnitDto dto)
 	{
-		throw new NotImplementedException();
+		await Invoke(GetOperation<Update>(), dto);
 	}
 }

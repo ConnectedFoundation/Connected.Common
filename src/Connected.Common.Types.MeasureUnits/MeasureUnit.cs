@@ -3,6 +3,8 @@ using Connected.Annotations.Entities;
 using Connected.Entities;
 
 namespace Connected.Common.Types.MeasureUnits;
+
+[Table(SchemaAttribute.CommonSchema)]
 internal sealed record MeasureUnit : ConsistentEntity<int>, IMeasureUnit
 {
 	[Ordinal(0), Length(32)]
