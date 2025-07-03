@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package Connected.Common.Types.MeasureUnits.Grpc;
+
+service MeasureUnitService {
+	rpc Select (IdDto) returns (MeasureUnit);
+	rpc Query(QueryDto) returns (MeasureUnits);
+	rpc Insert(InsertDto) returns (Id);
+	rpc Update(UpdateDto) returns (Void);
+	rpc Delete(IdDto) returns (Void);
+}
+
+enum Status {
+	Disabled = 0;
+	Enabled = 1;
+}
+
+message Void {
+
+}
+
+message InsertDto {
+	string name = 1;
+	string code = 2;
+	int32 precision = 3;
+	Status status = 4;
+}
+
+message UpdateDto {
+	int32 id = 1;
+	string name = 2;
+	string code = 3;
+	int32 precision = 4;
+	Status status = 5;
+}
+
+message QueryDto{
+
+}
+
+message IdDto{
+	int32 id = 1;
+}
+
+message MeasureUnits {
+	repeated MeasureUnit items = 1;
+}
+
+message MeasureUnit {
+	int32 id = 1;
+	string name = 2;
+	Status status = 3;
+	string code = 4;
+	int32 Precision = 5;
+}
+
+message Id {
+	int32 id = 1;
+}

@@ -4,22 +4,18 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<RootNamespace>Connected.Common.Types</RootNamespace>
 		<Company>Tom PIT</Company>
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
 		<Product>Connected Common</Product>
-		<PackageVersion>1.0.0-beta1</PackageVersion>
+		<PackageVersion>1.0.2-beta1</PackageVersion>
 		<FileVersion>1.0.0.0</FileVersion>
 		<Copyright>Connected Foundation</Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/Tom-PIT/Connected.Common</RepositoryUrl>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageOutputPath>$(ProjectDir)..\..\packages\</PackageOutputPath>
+		<RootNamespace>Connected.Common</RootNamespace>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="MeasureUnits\Protos\measureUnits.proto" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\..\LICENSE.txt" Link="LICENSE.txt">
@@ -33,19 +29,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Grpc.AspNetCore" Version="2.67.0" />
-		<ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ApplicationDefinition Include="MeasureUnits\Protos\measureUnits.proto">
-			<Access>Internal</Access>
-			<GrpcServices>Server</GrpcServices>
-		</ApplicationDefinition>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Protobuf Include="MeasureUnits\Protos\measureUnits.proto" ProtoCompile="False" GrpcServices="None" />
+	  <ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
+	  <ProjectReference Include="..\Connected.Common.Model\Connected.Common.Model.csproj" />
 	</ItemGroup>
 
 </Project>

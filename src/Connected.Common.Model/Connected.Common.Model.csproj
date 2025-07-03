@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>Connected.Common</RootNamespace>
+		<Company>Tom PIT</Company>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<Product>Connected Core</Product>
+		<PackageVersion>1.0.2-beta1</PackageVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<Copyright>Connected Foundation</Copyright>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/Tom-PIT/Connected.Common</RepositoryUrl>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageOutputPath>$(ProjectDir)..\..\packages\</PackageOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\LICENSE.txt">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -7,7 +7,7 @@ namespace Connected.Common.Types.MeasureUnits;
 [Table(SchemaAttribute.CommonSchema)]
 internal sealed record MeasureUnit : ConsistentEntity<int>, IMeasureUnit
 {
-	[Ordinal(0), Length(32)]
+	[Ordinal(0), Length(128)]
 	public required string Name { get; init; }
 
 	[Ordinal(1), Length(8)]

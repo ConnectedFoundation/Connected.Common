@@ -1,4 +1,5 @@
 using Connected.Annotations;
+using Connected.Common.Types.MeasureUnits.Dtos;
 using Connected.Services;
 using System.Collections.Immutable;
 
@@ -6,7 +7,7 @@ namespace Connected.Common.Types.MeasureUnits;
 /// <summary>
 /// The entity service for the measure units. 
 /// </summary>
-[Service, ServiceUrl(Urls.MeasureUnitService)]
+[Service, ServiceUrl(CommonTypesUrls.MeasureUnits)]
 public interface IMeasureUnitService
 {
 	/// <summary>
@@ -19,7 +20,7 @@ public interface IMeasureUnitService
 	/// </returns>
 	/// <param name="dto">The optional query criteria for sorting and paging.</param>
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	Task<ImmutableList<IMeasureUnit>> Query(IQueryDto? dto);
+	Task<IImmutableList<IMeasureUnit>> Query(IQueryDto? dto);
 	/// <summary>
 	/// Performs lookup for the specified list of measure unit ids. 
 	/// </summary>
@@ -28,8 +29,8 @@ public interface IMeasureUnitService
 	/// </returns>
 	/// <param name="dto">The list of ids for which the query will be performed.</param>
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	[ServiceUrl("lookup")]
-	Task<ImmutableList<IMeasureUnit>> Query(IPrimaryKeyListDto<int> dto);
+	[ServiceUrl(CommonTypesMetaData.LookupOperation)]
+	Task<IImmutableList<IMeasureUnit>> Query(IPrimaryKeyListDto<int> dto);
 	/// <summary>
 	/// Selects measure unit for the specified id. 
 	/// </summary>
@@ -47,7 +48,7 @@ public interface IMeasureUnitService
 	/// </returns>
 	/// <param name="dto">The code for which the query will be performed.</param>
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	[ServiceUrl("select-by-code")]
+	[ServiceUrl(CommonTypesMetaData.SelectByCodeOperation)]
 	Task<IMeasureUnit?> Select(ISelectMeasureUnitDto dto);
 	/// <summary>
 	/// Deletes the measure unit from the system. 

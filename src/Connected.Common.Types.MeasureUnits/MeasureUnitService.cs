@@ -1,7 +1,12 @@
-﻿using Connected.Services;
+﻿using Connected.Annotations;
+using Connected.Common.Types.MeasureUnits.Dtos;
+using Connected.Common.Types.MeasureUnits.Ops;
+using Connected.Services;
 using System.Collections.Immutable;
 
 namespace Connected.Common.Types.MeasureUnits;
+
+[ServiceVisibility(ServiceVisibilityScope.All)]
 internal sealed class MeasureUnitService(IServiceProvider services) : Service(services), IMeasureUnitService
 {
 	public async Task Delete(IPrimaryKeyDto<int> dto)
@@ -14,12 +19,12 @@ internal sealed class MeasureUnitService(IServiceProvider services) : Service(se
 		return await Invoke(GetOperation<Insert>(), dto);
 	}
 
-	public async Task<ImmutableList<IMeasureUnit>> Query(IQueryDto? dto)
+	public async Task<IImmutableList<IMeasureUnit>> Query(IQueryDto? dto)
 	{
 		return await Invoke(GetOperation<Query>(), dto ?? QueryDto.NoPaging);
 	}
 
-	public async Task<ImmutableList<IMeasureUnit>> Query(IPrimaryKeyListDto<int> dto)
+	public async Task<IImmutableList<IMeasureUnit>> Query(IPrimaryKeyListDto<int> dto)
 	{
 		return await Invoke(GetOperation<Lookup>(), dto);
 	}
