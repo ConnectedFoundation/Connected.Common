@@ -5,4 +5,5 @@ public static class CommonTypesUrls
 
 	public const string MeasureUnits = $"{Namespace}/measure-units";
 	public const string IncrementalNumbering = $"{Namespace}/numbering/incremental";
+	public const string OrganizationUnits = $"{Namespace}/organization-units";
 }

@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Sdk", "..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj", "{677BCFEC-B55D-E52D-8DB0-0969AB117483}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Common.Types.OrganizationUnits", "src\Connected.Common.Types.OrganizationUnits\Connected.Common.Types.OrganizationUnits.csproj", "{9F13BCA3-B5AF-4896-82C7-45B1630D2565}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,11 +61,18 @@ Global
 		{677BCFEC-B55D-E52D-8DB0-0969AB117483}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{677BCFEC-B55D-E52D-8DB0-0969AB117483}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{677BCFEC-B55D-E52D-8DB0-0969AB117483}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F13BCA3-B5AF-4896-82C7-45B1630D2565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F13BCA3-B5AF-4896-82C7-45B1630D2565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F13BCA3-B5AF-4896-82C7-45B1630D2565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F13BCA3-B5AF-4896-82C7-45B1630D2565}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{677BCFEC-B55D-E52D-8DB0-0969AB117483} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B747E8D7-292D-4EF9-9E4A-87162C512E2D}
 	EndGlobalSection
 EndGlobal
