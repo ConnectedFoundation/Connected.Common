@@ -3,10 +3,9 @@ using Connected.Annotations.Entities;
 using Connected.Entities;
 using Connected.Services;
 
-namespace Connected.Common.Types.OrganizationUnits;
+namespace Connected.Common.Types.Workplaces;
 
-[Table(Schema = SchemaAttribute.CommonSchema)]
-internal sealed record OrganizationUnit : ConsistentEntity<int>, IOrganizationUnit
+internal sealed record Workplace : ConsistentEntity<int>, IWorkplace
 {
 	[Ordinal(0), Length(Dto.DefaultNameLength)]
 	public required string Name { get; init; }
@@ -15,11 +14,14 @@ internal sealed record OrganizationUnit : ConsistentEntity<int>, IOrganizationUn
 	public required string Code { get; init; }
 
 	[Ordinal(2)]
-	public int? Parent { get; init; }
+	public int? OrganizationUnit { get; init; }
 
 	[Ordinal(3)]
+	public int? OrganizationLocation { get; init; }
+
+	[Ordinal(4)]
 	public Status Status { get; init; }
 
-	[Ordinal(4), Length(Dto.DefaultTagsLength)]
+	[Ordinal(5), Length(Dto.DefaultTagsLength)]
 	public string? Tags { get; init; }
 }

@@ -29,7 +29,7 @@ public interface IMeasureUnitService
 	/// </returns>
 	/// <param name="dto">The list of ids for which the query will be performed.</param>
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	[ServiceUrl(CommonTypesMetaData.LookupOperation)]
+	[ServiceUrl(CommonTypesUrls.LookupOperation)]
 	Task<IImmutableList<IMeasureUnit>> Query(IPrimaryKeyListDto<int> dto);
 	/// <summary>
 	/// Selects measure unit for the specified id. 
@@ -48,7 +48,7 @@ public interface IMeasureUnitService
 	/// </returns>
 	/// <param name="dto">The code for which the query will be performed.</param>
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	[ServiceUrl(CommonTypesMetaData.SelectByCodeOperation)]
+	[ServiceUrl(CommonTypesUrls.SelectByCodeOperation)]
 	Task<IMeasureUnit?> Select(ISelectMeasureUnitDto dto);
 	/// <summary>
 	/// Deletes the measure unit from the system. 

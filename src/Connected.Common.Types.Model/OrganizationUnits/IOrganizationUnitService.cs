@@ -26,9 +26,9 @@ public interface IOrganizationUnitService
 	[ServiceOperation(ServiceOperationVerbs.Get)]
 	Task<IImmutableList<IOrganizationUnit>> Query(IQueryDto? dto);
 
-	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesMetaData.QueryByParentOperation)]
+	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesUrls.QueryByParentOperation)]
 	Task<IImmutableList<IOrganizationUnit>> Query(IParentDto<int?> dto);
 
-	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesMetaData.QueryByTagsOperation)]
+	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesUrls.QueryByTagsOperation)]
 	Task<IImmutableList<IOrganizationUnit>> Query(ITagListDto dto);
 }
