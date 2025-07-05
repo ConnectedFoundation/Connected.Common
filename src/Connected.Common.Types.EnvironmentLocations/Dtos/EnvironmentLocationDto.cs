@@ -2,9 +2,9 @@
 using Connected.Services;
 using System.ComponentModel.DataAnnotations;
 
-namespace Connected.Common.Types.Workplaces.Dtos;
+namespace Connected.Common.Types.EnvironmentLocations.Dtos;
 
-internal abstract class WorkplaceDto : Dto, IWorkplaceDto
+internal abstract class EnvironmentLocationDto : Dto, IEnvironmentLocationDto
 {
 	[Required, MaxLength(DefaultNameLength)]
 	public required string Name { get; set; }
@@ -16,6 +16,5 @@ internal abstract class WorkplaceDto : Dto, IWorkplaceDto
 	public string? Tags { get; set; }
 
 	public Status Status { get; set; } = Status.Disabled;
-	public int? OrganizationUnit { get; set; }
-	public int? EnvironmentLocation { get; set; }
+	public int Head { get; set; }
 }

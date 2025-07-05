@@ -8,7 +8,7 @@ public interface IWorkplaceDto : IDto
 	string Name { get; set; }
 	string Code { get; set; }
 	int? OrganizationUnit { get; set; }
-	int? OrganizationLocation { get; set; }
+	int? EnvironmentLocation { get; set; }
 	Status Status { get; set; }
 	string? Tags { get; set; }
 }

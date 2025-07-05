@@ -3,9 +3,9 @@ using Connected.Annotations.Entities;
 using Connected.Entities;
 using Connected.Services;
 
-namespace Connected.Common.Types.Workplaces;
+namespace Connected.Common.Types.EnvironmentLocations;
 
-internal sealed record Workplace : ConsistentEntity<int>, IWorkplace
+internal sealed record EnvironmentLocation : ConsistentEntity<int>, IEnvironmentLocation
 {
 	[Ordinal(0), Length(Dto.DefaultNameLength)]
 	public required string Name { get; init; }
@@ -14,10 +14,7 @@ internal sealed record Workplace : ConsistentEntity<int>, IWorkplace
 	public required string Code { get; init; }
 
 	[Ordinal(2)]
-	public int? OrganizationUnit { get; init; }
-
-	[Ordinal(3)]
-	public int? EnvironmentLocation { get; init; }
+	public int Head { get; init; }
 
 	[Ordinal(4)]
 	public Status Status { get; init; }
