@@ -6,9 +6,9 @@ using System.Collections.Immutable;
 namespace Connected.Common.Types.OrganizationUnits;
 
 internal sealed class OrganizationUnitCache(ICachingService cache, IStorageProvider storage)
-		: EntityCache<OrganizationUnit, int>(cache, storage, CommonTypesMetaData.OrganizationUnitKey), IOrganizationUnitCache
+		: EntityCache<IOrganizationUnit, OrganizationUnit, int>(cache, storage, CommonTypesMetaData.OrganizationUnitKey), IOrganizationUnitCache
 {
-	private static TagIndexer<OrganizationUnit, int> TagsIndex { get; } = new();
+	private static TagIndexer<IOrganizationUnit, int> TagsIndex { get; } = new();
 
 	protected override async Task OnInitialized()
 	{
@@ -19,7 +19,7 @@ internal sealed class OrganizationUnitCache(ICachingService cache, IStorageProvi
 
 	protected override async Task OnInvalidated(int id)
 	{
-		if (await Get(id) is OrganizationUnit unit)
+		if (await Get(id) is IOrganizationUnit unit)
 			TagsIndex.Invalidate(unit);
 		else
 			TagsIndex.Remove(id);
@@ -34,7 +34,7 @@ internal sealed class OrganizationUnitCache(ICachingService cache, IStorageProvi
 		return base.OnRemoved(id);
 	}
 
-	public async Task<IImmutableList<OrganizationUnit>> Query(List<string> tags)
+	public async Task<IImmutableList<IOrganizationUnit>> Query(List<string> tags)
 	{
 		if (!Initialized)
 			await All();

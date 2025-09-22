@@ -6,9 +6,9 @@ using System.Collections.Immutable;
 namespace Connected.Common.Types.Workplaces;
 
 internal sealed class WorkplaceCache(ICachingService cache, IStorageProvider storage)
-		: EntityCache<Workplace, int>(cache, storage, CommonTypesMetaData.WorkplaceKey), IWorkplaceCache
+		: EntityCache<IWorkplace, Workplace, int>(cache, storage, CommonTypesMetaData.WorkplaceKey), IWorkplaceCache
 {
-	private static TagIndexer<Workplace, int> TagsIndex { get; } = new();
+	private static TagIndexer<IWorkplace, int> TagsIndex { get; } = new();
 
 	protected override async Task OnInitialized()
 	{
@@ -19,7 +19,7 @@ internal sealed class WorkplaceCache(ICachingService cache, IStorageProvider sto
 
 	protected override async Task OnInvalidated(int id)
 	{
-		if (await Get(id) is Workplace unit)
+		if (await Get(id) is IWorkplace unit)
 			TagsIndex.Invalidate(unit);
 		else
 			TagsIndex.Remove(id);
@@ -34,7 +34,7 @@ internal sealed class WorkplaceCache(ICachingService cache, IStorageProvider sto
 		return base.OnRemoved(id);
 	}
 
-	public async Task<IImmutableList<Workplace>> Query(List<string> tags)
+	public async Task<IImmutableList<IWorkplace>> Query(List<string> tags)
 	{
 		if (!Initialized)
 			await All();

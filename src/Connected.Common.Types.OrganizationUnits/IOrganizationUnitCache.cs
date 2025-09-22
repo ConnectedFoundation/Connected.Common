@@ -4,7 +4,7 @@ using System.Collections.Immutable;
 namespace Connected.Common.Types.OrganizationUnits;
 
 internal interface IOrganizationUnitCache
-	: IEntityCache<OrganizationUnit, int>
+	: IEntityCache<IOrganizationUnit, int>
 {
-	Task<IImmutableList<OrganizationUnit>> Query(List<string> tags);
+	Task<IImmutableList<IOrganizationUnit>> Query(List<string> tags);
 }

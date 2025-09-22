@@ -6,9 +6,9 @@ using System.Collections.Immutable;
 namespace Connected.Common.Types.EnvironmentLocations;
 
 internal sealed class EnvironmentLocationCache(ICachingService cache, IStorageProvider storage)
-		: EntityCache<EnvironmentLocation, int>(cache, storage, CommonTypesMetaData.WorkplaceKey), IEnvironmentLocationCache
+		: EntityCache<IEnvironmentLocation, EnvironmentLocation, int>(cache, storage, CommonTypesMetaData.WorkplaceKey), IEnvironmentLocationCache
 {
-	private static TagIndexer<EnvironmentLocation, int> TagsIndex { get; } = new();
+	private static TagIndexer<IEnvironmentLocation, int> TagsIndex { get; } = new();
 
 	protected override async Task OnInitialized()
 	{
@@ -19,7 +19,7 @@ internal sealed class EnvironmentLocationCache(ICachingService cache, IStoragePr
 
 	protected override async Task OnInvalidated(int id)
 	{
-		if (await Get(id) is EnvironmentLocation unit)
+		if (await Get(id) is IEnvironmentLocation unit)
 			TagsIndex.Invalidate(unit);
 		else
 			TagsIndex.Remove(id);
@@ -34,7 +34,7 @@ internal sealed class EnvironmentLocationCache(ICachingService cache, IStoragePr
 		return base.OnRemoved(id);
 	}
 
-	public async Task<IImmutableList<EnvironmentLocation>> Query(List<string> tags)
+	public async Task<IImmutableList<IEnvironmentLocation>> Query(List<string> tags)
 	{
 		if (!Initialized)
 			await All();

@@ -4,7 +4,7 @@ using System.Collections.Immutable;
 namespace Connected.Common.Types.Workplaces;
 
 internal interface IWorkplaceCache
-	: IEntityCache<Workplace, int>
+	: IEntityCache<IWorkplace, int>
 {
-	Task<IImmutableList<Workplace>> Query(List<string> tags);
+	Task<IImmutableList<IWorkplace>> Query(List<string> tags);
 }
