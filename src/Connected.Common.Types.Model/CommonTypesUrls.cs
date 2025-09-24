@@ -8,6 +8,7 @@ public static class CommonTypesUrls
 	public const string OrganizationUnits = $"{Namespace}/organization-units";
 	public const string Workplaces = $"{Namespace}/workplaces";
 	public const string EnvironmentLocations = $"{Namespace}/environment-locations";
+	public const string CostCenters = $"{Namespace}/cost-centers";
 
 	public const string LookupOperation = "lookup";
 	public const string SelectByCodeOperation = "select-by-code";

@@ -9,6 +9,6 @@ internal sealed class Query(IMeasureUnitCache cache)
 
 	protected override async Task<IImmutableList<IMeasureUnit>> OnInvoke()
 	{
-		return await cache.WithDto(Dto).AsEntities<IMeasureUnit>();
+		return await cache.WithDto(Dto).AsEntities();
 	}
 }
