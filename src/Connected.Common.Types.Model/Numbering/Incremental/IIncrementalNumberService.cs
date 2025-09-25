@@ -6,7 +6,12 @@ namespace Connected.Common.Types.Numbering.Incremental;
 [Service, ServiceUrl(CommonTypesUrls.IncrementalNumbering)]
 public interface IIncrementalNumberService
 {
+	[ServiceOperation(ServiceOperationVerbs.Delete)]
 	Task Delete(IIncrementalNumberDto dto);
-	Task<string> Next(IIncrementalNumberDto dto);
-	Task<IIncrementalNumber> Select(IIncrementalNumberDto dto);
+
+	[ServiceOperation(ServiceOperationVerbs.Put)]
+	Task<int> Next(IIncrementalNumberDto dto);
+
+	[ServiceOperation(ServiceOperationVerbs.Get)]
+	Task<IIncrementalNumber?> Select(IIncrementalNumberDto dto);
 }

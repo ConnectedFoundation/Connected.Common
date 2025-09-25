@@ -10,5 +10,6 @@ internal sealed class CommonImage : RuntimeImage
 		Application.RegisterMicroService("Connected.Common.Types.MeasureUnits.dll");
 		Application.RegisterMicroService("Connected.Common.Types.OrganizationUnits.dll");
 		Application.RegisterMicroService("Connected.Common.Types.Workplaces.dll");
+		Application.RegisterMicroService("Connected.Common.Types.Numbering.dll");
 	}
 }
