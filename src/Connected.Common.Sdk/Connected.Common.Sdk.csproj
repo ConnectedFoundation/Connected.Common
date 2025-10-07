@@ -30,9 +30,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Connected.Common.Extensions\Connected.Common.Extensions.csproj" />
 		<ProjectReference Include="..\Connected.Common.Model\Connected.Common.Model.csproj" />
-		<ProjectReference Include="..\Connected.Common.Types.Extensions\Connected.Common.Types.Extensions.csproj" />
-		<ProjectReference Include="..\Connected.Common.Types.Model\Connected.Common.Types.Model.csproj" />
-		<ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
 	</ItemGroup>
 
 </Project>

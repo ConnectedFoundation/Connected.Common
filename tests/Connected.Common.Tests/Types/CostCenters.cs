@@ -8,7 +8,7 @@ using Connected.Entities;
 namespace Connected.Common.Tests;
 
 [TestClass]
-public sealed class GeoLocations()
+public sealed class CostCenters()
 	: RestTest(CommonTypesUrls.CostCenters)
 {
 	[TestMethod]
