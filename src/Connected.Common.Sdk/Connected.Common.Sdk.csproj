@@ -28,6 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
 		<ProjectReference Include="..\Connected.Common.Extensions\Connected.Common.Extensions.csproj" />
 		<ProjectReference Include="..\Connected.Common.Model\Connected.Common.Model.csproj" />
 	</ItemGroup>

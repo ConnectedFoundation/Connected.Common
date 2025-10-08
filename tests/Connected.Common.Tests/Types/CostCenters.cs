@@ -5,7 +5,7 @@ using Connected.Core.Mock;
 using Connected.Core.Services.Mock;
 using Connected.Entities;
 
-namespace Connected.Common.Tests;
+namespace Connected.Common.Tests.Types;
 
 [TestClass]
 public sealed class CostCenters()
