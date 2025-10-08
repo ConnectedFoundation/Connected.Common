@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 
 namespace Connected.Common.Types.OrganizationUnits;
 
-[Service, ServiceUrl(CommonTypesUrls.OrganizationUnits)]
+[Service, ServiceUrl(CommonUrls.OrganizationUnits)]
 public interface IOrganizationUnitService
 {
 	[ServiceOperation(ServiceOperationVerbs.Put)]
@@ -26,9 +26,9 @@ public interface IOrganizationUnitService
 	[ServiceOperation(ServiceOperationVerbs.Get)]
 	Task<IImmutableList<IOrganizationUnit>> Query(IQueryDto? dto);
 
-	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesUrls.QueryByParentOperation)]
+	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(ServiceOperations.QueryByParent)]
 	Task<IImmutableList<IOrganizationUnit>> Query(IParentDto<int?> dto);
 
-	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesUrls.QueryByTagsOperation)]
+	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(ServiceOperations.QueryByTags)]
 	Task<IImmutableList<IOrganizationUnit>> Query(ITagListDto dto);
 }

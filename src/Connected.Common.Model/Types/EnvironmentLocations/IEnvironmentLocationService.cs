@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 
 namespace Connected.Common.Types.EnvironmentLocations;
 
-[Service, ServiceUrl(CommonTypesUrls.OrganizationUnits)]
+[Service, ServiceUrl(CommonUrls.OrganizationUnits)]
 public interface IEnvironmentLocationService
 {
 	[ServiceOperation(ServiceOperationVerbs.Put)]
@@ -26,9 +26,9 @@ public interface IEnvironmentLocationService
 	[ServiceOperation(ServiceOperationVerbs.Get)]
 	Task<IImmutableList<IEnvironmentLocation>> Query(IQueryDto? dto);
 
-	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesUrls.QueryByTagsOperation)]
+	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(ServiceOperations.QueryByTags)]
 	Task<IImmutableList<IEnvironmentLocation>> Query(ITagListDto dto);
 
-	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesUrls.QueryByHeadOperation)]
+	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(ServiceOperations.QueryByHead)]
 	Task<IImmutableList<IEnvironmentLocation>> Query(IHeadDto<int> dto);
 }

@@ -3,7 +3,7 @@ using Connected.Common.Types.Numbering.Incremental.Dtos;
 
 namespace Connected.Common.Types.Numbering.Incremental;
 
-[Service, ServiceUrl(CommonTypesUrls.IncrementalNumbering)]
+[Service, ServiceUrl(CommonUrls.IncrementalNumbering)]
 public interface IIncrementalNumberService
 {
 	[ServiceOperation(ServiceOperationVerbs.Delete)]

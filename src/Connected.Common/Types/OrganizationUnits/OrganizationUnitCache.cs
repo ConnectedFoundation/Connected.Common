@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 namespace Connected.Common.Types.OrganizationUnits;
 
 internal sealed class OrganizationUnitCache(ICachingService cache, IStorageProvider storage)
-		: EntityCache<IOrganizationUnit, OrganizationUnit, int>(cache, storage, CommonTypesMetaData.OrganizationUnitKey), IOrganizationUnitCache
+		: EntityCache<IOrganizationUnit, OrganizationUnit, int>(cache, storage, CommonMetaData.OrganizationUnitKey), IOrganizationUnitCache
 {
 	private static TagIndexer<IOrganizationUnit, int> TagsIndex { get; } = new();
 

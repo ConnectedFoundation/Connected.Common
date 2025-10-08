@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 
 namespace Connected.Common.Types.CostCenters;
 
-[Service, ServiceUrl(CommonTypesUrls.CostCenters)]
+[Service, ServiceUrl(CommonUrls.CostCenters)]
 public interface ICostCenterService
 {
 	[ServiceOperation(ServiceOperationVerbs.Post)]
@@ -20,7 +20,7 @@ public interface ICostCenterService
 	[ServiceOperation(ServiceOperationVerbs.Get)]
 	Task<IImmutableList<ICostCenter>> Query(IQueryDto? dto);
 
-	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesUrls.LookupOperation)]
+	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(ServiceOperations.Lookup)]
 	Task<IImmutableList<ICostCenter>> Query(IPrimaryKeyListDto<int> dto);
 
 	[ServiceOperation(ServiceOperationVerbs.Get)]

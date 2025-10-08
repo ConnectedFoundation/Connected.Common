@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 namespace Connected.Common.Types.Workplaces;
 
 internal sealed class WorkplaceCache(ICachingService cache, IStorageProvider storage)
-		: EntityCache<IWorkplace, Workplace, int>(cache, storage, CommonTypesMetaData.WorkplaceKey), IWorkplaceCache
+		: EntityCache<IWorkplace, Workplace, int>(cache, storage, CommonMetaData.WorkplaceKey), IWorkplaceCache
 {
 	private static TagIndexer<IWorkplace, int> TagsIndex { get; } = new();
 

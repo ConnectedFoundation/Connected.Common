@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 
 namespace Connected.Common.Types.Workplaces;
 
-[Service, ServiceUrl(CommonTypesUrls.Workplaces)]
+[Service, ServiceUrl(CommonUrls.Workplaces)]
 public interface IWorkplaceService
 {
 	[ServiceOperation(ServiceOperationVerbs.Put)]
@@ -23,7 +23,7 @@ public interface IWorkplaceService
 	[ServiceOperation(ServiceOperationVerbs.Get)]
 	Task<IImmutableList<IWorkplace>> Query(IQueryDto? dto);
 
-	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(CommonTypesUrls.QueryByTagsOperation)]
+	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(ServiceOperations.QueryByTags)]
 	Task<IImmutableList<IWorkplace>> Query(ITagListDto dto);
 	Task<IWorkplace?> Select(IPrimaryKeyDto<int> dto);
 }

@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 namespace Connected.Common.Types.EnvironmentLocations;
 
 internal sealed class EnvironmentLocationCache(ICachingService cache, IStorageProvider storage)
-		: EntityCache<IEnvironmentLocation, EnvironmentLocation, int>(cache, storage, CommonTypesMetaData.WorkplaceKey), IEnvironmentLocationCache
+		: EntityCache<IEnvironmentLocation, EnvironmentLocation, int>(cache, storage, CommonMetaData.WorkplaceKey), IEnvironmentLocationCache
 {
 	private static TagIndexer<IEnvironmentLocation, int> TagsIndex { get; } = new();
 

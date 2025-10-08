@@ -7,7 +7,7 @@ namespace Connected.Common.Types.MeasureUnits;
 /// <summary>
 /// The entity service for the measure units. 
 /// </summary>
-[Service, ServiceUrl(CommonTypesUrls.MeasureUnits)]
+[Service, ServiceUrl(CommonUrls.MeasureUnits)]
 public interface IMeasureUnitService
 {
 	/// <summary>
@@ -29,7 +29,7 @@ public interface IMeasureUnitService
 	/// </returns>
 	/// <param name="dto">The list of ids for which the query will be performed.</param>
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	[ServiceUrl(CommonTypesUrls.LookupOperation)]
+	[ServiceUrl(ServiceOperations.Lookup)]
 	Task<IImmutableList<IMeasureUnit>> Query(IPrimaryKeyListDto<int> dto);
 	/// <summary>
 	/// Selects measure unit for the specified id. 
@@ -48,7 +48,7 @@ public interface IMeasureUnitService
 	/// </returns>
 	/// <param name="dto">The code for which the query will be performed.</param>
 	[ServiceOperation(ServiceOperationVerbs.Get | ServiceOperationVerbs.Post)]
-	[ServiceUrl(CommonTypesUrls.SelectByCodeOperation)]
+	[ServiceUrl(ServiceOperations.SelectByCode)]
 	Task<IMeasureUnit?> Select(ISelectMeasureUnitDto dto);
 	/// <summary>
 	/// Deletes the measure unit from the system. 

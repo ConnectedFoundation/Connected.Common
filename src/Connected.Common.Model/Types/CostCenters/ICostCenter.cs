@@ -3,7 +3,7 @@ using Connected.Entities;
 
 namespace Connected.Common.Types.CostCenters;
 
-[EntityKey(CommonTypesMetaData.CostCenterKey)]
+[EntityKey(CommonMetaData.CostCenterKey)]
 public interface ICostCenter : IEntity<int>
 {
 	string Name { get; init; }

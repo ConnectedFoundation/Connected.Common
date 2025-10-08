@@ -3,7 +3,7 @@ using Connected.Entities;
 
 namespace Connected.Common.Types.Numbering.Incremental;
 
-[EntityKey(CommonTypesMetaData.IncrementalNumberKey)]
+[EntityKey(CommonMetaData.IncrementalNumberKey)]
 public interface IIncrementalNumber : IEntity<int>
 {
 	string Key { get; init; }
