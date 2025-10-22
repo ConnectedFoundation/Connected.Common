@@ -8,10 +8,10 @@ namespace Connected.Common.Types.OrganizationUnits;
 [Service, ServiceUrl(CommonUrls.OrganizationUnits)]
 public interface IOrganizationUnitService
 {
-	[ServiceOperation(ServiceOperationVerbs.Put)]
+	[ServiceOperation(ServiceOperationVerbs.Post)]
 	Task<int> Insert(IInsertOrganizationUnitDto dto);
 
-	[ServiceOperation(ServiceOperationVerbs.Post)]
+	[ServiceOperation(ServiceOperationVerbs.Put)]
 	Task Update(IUpdateOrganizationUnitDto dto);
 
 	[ServiceOperation(ServiceOperationVerbs.Patch)]
