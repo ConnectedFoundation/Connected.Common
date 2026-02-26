@@ -18,18 +18,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\LICENSE.txt">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Include="..\..\README.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Include="..\..\LICENSE.txt">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\Connected.Core\src\Connected.Sdk\Connected.Sdk.csproj" />
+		<ProjectReference Include="$(ConnectedCore)\Connected.Sdk\Connected.Sdk.csproj" />
 	</ItemGroup>
 
 </Project>
