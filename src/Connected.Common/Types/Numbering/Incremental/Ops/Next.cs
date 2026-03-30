@@ -6,6 +6,7 @@ using Connected.Storage;
 using Connected.Threading;
 
 namespace Connected.Common.Types.Numbering.Incremental.Ops;
+
 internal sealed class Next(IStorageProvider storage, IEventService events, IIncrementalNumberService numbering,
 	IIncrementalNumberCache cache, IIncrementalNumberNextAmbient ambient)
 	: ServiceFunction<IIncrementalNumberDto, int>
@@ -28,15 +29,15 @@ internal sealed class Next(IStorageProvider storage, IEventService events, IIncr
 
 			SetState(entity);
 
-			await storage.Open<IncrementalNumber>().Update(entity.Merge(Dto, State.Update, ambient), Dto, async () =>
+			await storage.Open<IncrementalNumber>().Update(entity.Merge(Dto, State.Update, ambient), async (f) =>
+			{
+				return await Task.FromResult(f.Merge(Dto, State.Update, ambient));
+			}, async () =>
 			{
 				await cache.Refresh(entity.Id);
 
 				return SetState(await numbering.Select(Dto)) as IncrementalNumber ?? throw new NullReferenceException(Strings.ErrEntityExpected);
-			}, Caller, async (f) =>
-			{
-				return await Task.FromResult(f.Merge(Dto, State.Update, ambient));
-			});
+			}, Caller);
 		});
 
 		if (entity is not null)
