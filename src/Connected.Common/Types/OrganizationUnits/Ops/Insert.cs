@@ -14,7 +14,7 @@ internal sealed class Insert(IOrganizationUnitService organizationUnits, IEventS
 		var entity = SetState(await storage.Open<OrganizationUnit>().Update(Dto.AsEntity<OrganizationUnit>(State.Add))) ?? throw new NullReferenceException(Strings.ErrEntityExpected);
 
 		await cache.Refresh(entity.Id);
-		await events.Deleted(this, organizationUnits, entity.Id);
+		await events.Inserted(this, organizationUnits, entity.Id);
 
 		return entity.Id;
 	}
