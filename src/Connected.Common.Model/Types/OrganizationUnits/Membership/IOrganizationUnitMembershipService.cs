@@ -21,6 +21,9 @@ public interface IOrganizationUnitMembershipService
 	[ServiceUrl(ServiceOperations.QueryByIdentity)]
 	Task<IImmutableList<IOrganizationUnitMembership>> Query(IValueDto<string> dto);
 
+	[ServiceOperation(ServiceOperationVerbs.Get), ServiceUrl(ServiceOperations.Lookup)]
+	Task<IImmutableList<IOrganizationUnitMembership>> Query(IHeadListDto<int> dto);
+
 	[ServiceOperation(ServiceOperationVerbs.Get)]
 	Task<IOrganizationUnitMembership?> Select(IPrimaryKeyDto<int> dto);
 }

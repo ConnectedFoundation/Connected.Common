@@ -27,6 +27,11 @@ internal sealed class OrganizationUnitMembershipService(IServiceProvider service
 		return await Invoke(GetOperation<QueryByIdentity>(), dto);
 	}
 
+	public async Task<IImmutableList<IOrganizationUnitMembership>> Query(IHeadListDto<int> dto)
+	{
+		return await Invoke(GetOperation<Lookup>(), dto);
+	}
+
 	public async Task<IOrganizationUnitMembership?> Select(IPrimaryKeyDto<int> dto)
 	{
 		return await Invoke(GetOperation<Select>(), dto);
