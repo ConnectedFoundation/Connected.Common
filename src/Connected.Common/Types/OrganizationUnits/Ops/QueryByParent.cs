@@ -9,6 +9,6 @@ internal sealed class QueryByParent(IOrganizationUnitCache cache)
 {
 	protected override async Task<IImmutableList<IOrganizationUnit>> OnInvoke()
 	{
-		return await cache.AsEntities<IOrganizationUnit>(f => Dto.Parent is null || f.Parent == Dto.Parent);
+		return await cache.AsEntities<IOrganizationUnit>(f => Dto.Parent == null || f.Parent == Dto.Parent);
 	}
 }
