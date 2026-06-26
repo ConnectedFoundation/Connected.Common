@@ -1,3 +1,4 @@
+using Connected.Annotations.Entities;
 using Connected.Entities;
 
 namespace Connected.Common.Types.MeasureUnits;
@@ -5,6 +6,7 @@ namespace Connected.Common.Types.MeasureUnits;
 /// <summary>
 /// The measure unit entity contract.
 /// </summary>
+[EntityKey(CommonMetaData.MeasureUnitKey)]
 public interface IMeasureUnit : IEntity<int>
 {
 	/// <value>
