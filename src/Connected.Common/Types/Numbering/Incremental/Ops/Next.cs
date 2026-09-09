@@ -24,6 +24,12 @@ internal sealed class Next(IStorageProvider storage, IEventService events, IIncr
 
 		await _locker.LockAsync(Dto.Key.ToLowerInvariant(), async () =>
 		{
+			/*
+			 * Need to reevaluate dto computation to avoid
+			 * race condition
+			 */
+			await ambient.Invoke(Dto);
+
 			entity = await numbering.Select(Dto) as IncrementalNumber;
 			entity ??= await storage.Open<IncrementalNumber>().Update(Dto.AsEntity<IncrementalNumber>(State.Add, ambient)) ?? throw new NullReferenceException(Strings.ErrEntityExpected);
 
@@ -31,20 +37,21 @@ internal sealed class Next(IStorageProvider storage, IEventService events, IIncr
 
 			await storage.Open<IncrementalNumber>().Update(entity.Merge(Dto, State.Update, ambient), async (f) =>
 			{
-				return await Task.FromResult(f.Merge(Dto, State.Update, ambient));
+                return await Task.FromResult(f.Merge(Dto, State.Update, ambient));
 			}, async () =>
 			{
 				await cache.Refresh(entity.Id);
 
 				return SetState(await numbering.Select(Dto)) as IncrementalNumber ?? throw new NullReferenceException(Strings.ErrEntityExpected);
 			}, Caller);
+
+			if (entity is not null)
+			{
+				await cache.Refresh(entity.Id);
+				await events.Updated(this, numbering, entity.Id);
+			}
 		});
 
-		if (entity is not null)
-		{
-			await cache.Refresh(entity.Id);
-			await events.Updated(this, numbering, entity.Id);
-		}
 
 		return ambient.Value;
 	}
