@@ -11,48 +11,52 @@ internal sealed class Next(IStorageProvider storage, IEventService events, IIncr
 	IIncrementalNumberCache cache, IIncrementalNumberNextAmbient ambient)
 	: ServiceFunction<IIncrementalNumberDto, int>
 {
-	private static AsyncLocker<string> _locker;
-
-	static Next()
-	{
-		_locker = new();
-	}
+	private static readonly AsyncLocker<string> _locker = new();
 
 	protected override async Task<int> OnInvoke()
 	{
-		IncrementalNumber? entity = null;
+		var key = Dto.Key.ToLowerInvariant();
 
-		await _locker.LockAsync(Dto.Key.ToLowerInvariant(), async () =>
+		var entity = await _locker.LockAsync(key, async () =>
 		{
-			/*
-			 * Need to reevaluate dto computation to avoid
-			 * race condition
-			 */
 			await ambient.Invoke(Dto);
+			var existing = await cache.Get(f => string.Equals(f.Key, key, StringComparison.OrdinalIgnoreCase)) as IncrementalNumber;
+			var numbers = storage.Open<IncrementalNumber>();
 
-			entity = await numbering.Select(Dto) as IncrementalNumber;
-			entity ??= await storage.Open<IncrementalNumber>().Update(Dto.AsEntity<IncrementalNumber>(State.Add, ambient)) ?? throw new NullReferenceException(Strings.ErrEntityExpected);
-
-			SetState(entity);
-
-			await storage.Open<IncrementalNumber>().Update(entity.Merge(Dto, State.Update, ambient), async (f) =>
+			// Commit the counter before releasing this lock. Keeping its SQL lock
+			// until the event batch commits can deadlock the batch's next reservation.
+			if (existing is null)
 			{
-                return await Task.FromResult(f.Merge(Dto, State.Update, ambient));
+
+				return await numbers.Update(Dto.AsEntity<IncrementalNumber>(State.Add, ambient))
+					?? throw new NullReferenceException(Strings.ErrEntityExpected);
+			}
+
+			var result = await numbers.Update(existing, current =>
+			{
+				return Task.FromResult(current.Merge(Dto, State.Update, ambient));
 			}, async () =>
 			{
-				await cache.Refresh(entity.Id);
+				var invalid = await cache.Get(f => string.Equals(f.Key, key, StringComparison.OrdinalIgnoreCase)) as IncrementalNumber;
 
-				return SetState(await numbering.Select(Dto)) as IncrementalNumber ?? throw new NullReferenceException(Strings.ErrEntityExpected);
-			}, Caller);
+				if (invalid != null)
+					await cache.Refresh(invalid.Id);
 
-			if (entity is not null)
-			{
-				await cache.Refresh(entity.Id);
-				await events.Updated(this, numbering, entity.Id);
-			}
-		});
+				await ambient.Invoke(Dto);
+				// Another process may have written since our read. The merge above
+				// must calculate a new value from the current row on every retry.
+				return (await cache.Get(f => string.Equals(f.Key, key, StringComparison.OrdinalIgnoreCase))).Required<IncrementalNumber>();
 
+			}, Caller) ?? throw new NullReferenceException(Strings.ErrEntityExpected);
 
-		return ambient.Value;
+            SetState(result);
+
+            await cache.Refresh(result.Id);
+            await events.Updated(this, numbering, result.Id);
+
+			return result;
+        });
+
+		return entity.Value.GetValueOrDefault();
 	}
 }
